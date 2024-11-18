@@ -1,10 +1,10 @@
 /// Model data siswa
-class Student {
+class Siswa {
   /// Nama siswa
-  String name;
+  String nama;
 
   /// Status kehadiran siswa (true = hadir, false = tidak hadir)
-  bool isPresent;
+  bool isHadir;
 
-  Student({required this.name, this.isPresent=false});
+  Siswa({required this.nama, this.isHadir = false});
 }

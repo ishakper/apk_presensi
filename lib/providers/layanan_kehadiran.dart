@@ -1,44 +1,65 @@
 import 'package:flutter/material.dart';
-import '../models/siswa_model.dart';
 
-class LayananKehadiran extends ChangeNotifier {
-  List<Student> _students = [
-    Student(name: 'Ali'),
-    Student(name: 'Budi'),
-    Student(name: 'Citra'),
-    Student(name: 'Reza'),
-    Student(name: 'Ishak'),
-    Student(name: 'Pablo'),
-    Student(name: 'Syupik'),
-    Student(name: 'Dhafa Kopling'),
-    Student(name: 'Dimas alkohol'),
-    Student(name: 'Mega Maharanti'),
+class Mahasiswa {
+  final String nama;
+  bool isHadir;
+
+  Mahasiswa({required this.nama, this.isHadir = false});
+}
+
+class LayananKehadiran with ChangeNotifier {
+  final List<Mahasiswa> _siswa = [
+    Mahasiswa(nama: 'Budi'),
+    Mahasiswa(nama: 'Ani'),
+    Mahasiswa(nama: 'Citra'),
+    Mahasiswa(nama: 'Syupik'),
+    Mahasiswa(nama: 'Attalurik'),
+    Mahasiswa(nama: 'Pablo'),
+    Mahasiswa(nama: 'Yanto'),
+    Mahasiswa(nama: 'Fauzan'),
+    Mahasiswa(nama: 'Caca'),
+    Mahasiswa(nama: 'Mega Can'),
+    Mahasiswa(nama: 'Dimas Alkohol'),
+    Mahasiswa(nama: 'Reza Arab'),
+    Mahasiswa(nama: 'Asyep'),
+    Mahasiswa(nama: 'Lord Teguh'),
+    Mahasiswa(nama: 'Bagus Tri'),
+    Mahasiswa(nama: 'Bahrudin'),
+
   ];
 
-  List<Map<String, dynamic>> _history = [];
+  final List<Map<String, dynamic>> _riwayat = [];
 
-  List<Student> get students => _students;
-  List<Map<String, dynamic>> get history => _history;
+  List<Mahasiswa> get siswa => _siswa;
+  List<Map<String, dynamic>> get riwayat => _riwayat;
 
-  void toggleAttendance(int index) {
-    _students[index].isPresent = !_students[index].isPresent;
+  void ubahStatusKehadiran(int index) {
+    _siswa[index].isHadir = !_siswa[index].isHadir;
     notifyListeners();
   }
 
-  void saveAttendance() {
-    int present = _students.where((student) => student.isPresent).length;
-    int absent = _students.length - present;
+  void simpanKehadiran() {
+    final hadir = _siswa.where((siswa) => siswa.isHadir).map((siswa) => siswa.nama).toList();
+    final tidakHadir = _siswa.where((siswa) => !siswa.isHadir).map((siswa) => siswa.nama).toList();
 
-    _history.insert(0, {
-      'date': DateTime.now().toString(),
-      'present': present,
-      'absent': absent,
+    _riwayat.add({
+      'tanggal': DateTime.now().toString().split(' ')[0],
+      'hadir': hadir.length,
+      'tidakHadir': tidakHadir.length,
+      'mahasiswaHadir': hadir,
+      'mahasiswaTidakHadir': tidakHadir,
     });
 
-    for (var student in _students) {
-      student.isPresent = false;
-    }
+    notifyListeners();
+  }
 
+  void hapusRiwayat(int index) {
+    _riwayat.removeAt(index);
+    notifyListeners();
+  }
+
+  void hapusSemuaRiwayat() {
+    _riwayat.clear();
     notifyListeners();
   }
 }
