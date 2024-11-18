@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/attendance_provider.dart';
+import '../providers/layanan_kehadiran.dart';
 
-class AttendancePage extends StatelessWidget {
+class HalamanKehadiran extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<AttendanceProvider>(context);
+    final provider = Provider.of<LayananKehadiran>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pencatatan Kehadiran Mahasiswa Poliwangi'),

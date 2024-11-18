@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/student_model.dart';
+import '../models/siswa_model.dart';
 
-class AttendanceProvider extends ChangeNotifier {
+class LayananKehadiran extends ChangeNotifier {
   List<Student> _students = [
     Student(name: 'Ali'),
     Student(name: 'Budi'),
@@ -13,7 +13,7 @@ class AttendanceProvider extends ChangeNotifier {
     Student(name: 'Dhafa Kopling'),
     Student(name: 'Dimas alkohol'),
     Student(name: 'Mega Maharanti'),
-];
+  ];
 
   List<Map<String, dynamic>> _history = [];
 

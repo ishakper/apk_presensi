@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/attendance_provider.dart';
+import '../providers/layanan_kehadiran.dart';
 
-class HistoryPage extends StatelessWidget {
+class HalamanRiwayatKehadiran extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final history = context.watch<AttendanceProvider>().history;
+    final history = context.watch<LayananKehadiran>().history;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Riwayat Kehadiran Mahasiswa Poliwangi')),
